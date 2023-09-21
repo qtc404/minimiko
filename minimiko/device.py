@@ -30,7 +30,7 @@ class Device:
         # TODO: check stderr
         client = self.connect()
         output = {}
-        stdin, stdout, stderr = client.exec_command("")
+        stdin, stdout, stderr = client.exec_command('')
         if type(cmd) == str:
             stdin.write(cmd + '\r')
         elif type(cmd) == list:
@@ -39,14 +39,13 @@ class Device:
             output['error'] = 'command must be string or list'
             return output
         stdin.close()
-        client.close()
 
         # convert output to dict
         # detect automatically two modes: table or key-value
         mode_table = False
         keys = []
         line_table = 0 
-        for line in iter(stdout.readline,""):
+        for line in iter(stdout.readline, ''):
             # if cmd[0].endswith('/config'):
             #     print(line, end='')
             #     continue
@@ -74,5 +73,5 @@ class Device:
                         output[f'_{key}'] = value
                     else:
                         print(f'warning, key already exists: _{key}')
-
+        client.close()
         return output
