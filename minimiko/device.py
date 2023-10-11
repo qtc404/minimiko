@@ -49,7 +49,11 @@ class Device:
             # if cmd[0].endswith('/config'):
             #     print(line, end='')
             #     continue
-            if line.count('|') > 2:
+            if line.count('|') == 2:
+                mode_table = False
+            elif line.count('|') == 3:
+                continue
+            elif line.count('|') > 2:
                 if mode_table:
                     values = [i.rstrip() for i in line.rstrip()[1:-1].split('|')]
                     data = dict([key, values[idx]] for idx, key in enumerate(keys))
