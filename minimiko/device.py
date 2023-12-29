@@ -120,7 +120,7 @@ class Device:
                 l = line.replace('=', '').strip()
                 #line_split = l.split()
                 line_split = [t.strip() for t in l.split('  ') if t]
-                print('spaces:', s, spaces, keys, line_split)
+                # print('spaces:', s, spaces, keys, line_split)
 
                 if len(line_split):
                     if len(line_split) == 1: # and not spaces:
